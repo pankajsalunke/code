@@ -1,0 +1,498 @@
+***********************************Slip-1****************************************
+Q.1) Create an HTML form for Login and write a JavaScript to validate email ID and Password. [10]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+Q.2) Using node js create a web page to read two file names from user and append contents of first file into second file. [15]
+const readline = require('readline');
+const fs = require('fs');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('Enter the name of the first file: ', (file1) => {
+    rl.question('Enter the name of the second file: ', (file2) => {
+        fs.readFile(file1, 'utf8', (err, data) => {
+            if (err) throw err;
+            fs.appendFile(file2, data, (err) => {
+                if (err) throw err;
+                console.log(`${file1} appended to ${file2}`);
+                rl.close();
+            });
+        });
+    });
+});
+
+
+
+*****************************Slip-2***************************************************************
+Q.1) Create a Node.js file that will convert the output "Full Stack!" into reverse string. [10]
+const str = "Full Stack!";
+const reversedStr = str.split('').reverse().join('');
+console.log(reversedStr);
+
+Q.2) Create an HTML form that contain the Student Registration details and write a JavaScript to validate Student first and last name as it should not contain other than 
+alphabets and age should be between 18 to 50. [15] 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+</head>
+<body>
+    <h2>Student Registration</h2>
+    <form onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+    <script>
+        function validateForm() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var age = document.getElementById('age').value;
+
+            var nameRegex = /^[A-Za-z]+$/;
+
+            if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+                alert('First and last name should only contain alphabets');
+                return false;
+            }
+
+            if (age < 18 || age > 50) {
+                alert('Age should be between 18 to 50');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+
+***************************Slip-3   &    Slip7************************************************
+Q.1) Create a Simple Web Server using node js. [10]
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World!\n');
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}/`);
+});
+
+Q.2) Create an HTML form that contain the Employee Registration details and write
+ a JavaScript to validate DOB, Joining Date, and Salary. [15] 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+</head>
+<body>
+    <h2>Employee Registration</h2>
+    <form onsubmit="return validateForm()">
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" required><br><br>
+        <label for="joiningDate">Joining Date:</label><br>
+        <input type="date" id="joiningDate" name="joiningDate" required><br><br>
+        <label for="salary">Salary:</label><br>
+        <input type="number" id="salary" name="salary" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+    <script>
+        function validateForm() {
+            var dob = document.getElementById('dob').value;
+            var joiningDate = document.getElementById('joiningDate').value;
+            var salary = document.getElementById('salary').value;
+
+            // You can implement validation for date format and salary range as required
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+
+***************************************Slip-4******************************************************************
+Q.1) Create a Node.js file that will convert the output "Full Stack!" into reverse string. [10]
+const str = "Full Stack!";
+const reversedStr = str.split('').reverse().join('');
+console.log(reversedStr);
+
+Q.2) Using node js create a web page to read two file names from user and append contents of first file into second file.  [15] 
+const readline = require('readline');
+const fs = require('fs');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('Enter the name of the first file: ', (file1) => {
+    rl.question('Enter the name of the second file: ', (file2) => {
+        fs.readFile(file1, 'utf8', (err, data) => {
+            if (err) throw err;
+            fs.appendFile(file2, data, (err) => {
+                if (err) throw err;
+                console.log(`${file1} appended to ${file2}`);
+                rl.close();
+            });
+        });
+    });
+});
+
+
+*************************************Slip-5*************************************************************
+Q.1) Create a Node.js file that writes an HTML form, with an upload field. [10] 
+const fs = require('fs');
+
+const htmlForm = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Form</title>
+</head>
+<body>
+    <h2>Upload File</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
+`;
+
+fs.writeFileSync('uploadForm.html', htmlForm);
+console.log('HTML form with upload field created!');
+
+Q.2) Create an HTML form for Student Feedback Form with Name, Email ID,  Mobile No., feedback (Not good, good, very good, excellent) and write a 
+ JavaScript to validate all field.   [15]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback Form</title>
+</head>
+<body>
+    <h2>Student Feedback Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="mobile">Mobile No.:</label><br>
+        <input type="text" id="mobile" name="mobile" maxlength="10" required><br><br>
+        <label for="feedback">Feedback:</label><br>
+        <select id="feedback" name="feedback" required>
+            <option value="">Select</option>
+            <option value="Not good">Not good</option>
+            <option value="Good">Good</option>
+            <option value="Very good">Very good</option>
+            <option value="Excellent">Excellent</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile').value;
+            var feedback = document.getElementById('feedback').value;
+
+            var nameRegex = /^[A-Za-z]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var mobileRegex = /^[0-9]{10}$/;
+
+            if (!nameRegex.test(name)) {
+                alert('Please enter a valid name');
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            if (!mobileRegex.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return false;
+            }
+
+            if (feedback === "") {
+                alert('Please provide feedback');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+****************Slip-6   &    slip10************************************************************************
+
+Q.1) Create a Node.js file that will convert the output "rbnb college!" into Upper-case letters.      [10] 
+const str = "rbnb college!";
+const upperCaseStr = str.toUpperCase();
+console.log(upperCaseStr);
+
+Q.2) Create an HTML form for Employee and write a JavaScript to validate name, email ID, 
+mobile number, department, joining date. [15] 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+</head>
+<body>
+    <h2>Employee Registration</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="mobile">Mobile No.:</label><br>
+        <input type="text" id="mobile" name="mobile" maxlength="10" required><br><br>
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" name="department" required><br><br>
+        <label for="joiningDate">Joining Date:</label><br>
+        <input type="date" id="joiningDate" name="joiningDate" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+     <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile').value;
+            var department = document.getElementById('department').value;
+            var joiningDate = document.getElementById('joiningDate').value;
+
+            var nameRegex = /^[A-Za-z]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var mobileRegex = /^[0-9]{10}$/;
+            // You can add validation for department and joining date format as required
+
+            if (!nameRegex.test(name)) {
+                alert('Please enter a valid name');
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            if (!mobileRegex.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+
+****************************************Slip-8*****************************************************
+Q.1) Create a Node.js file that will convert the output "HELLO WORLD!" into lower-case 
+letters. [10]
+const str = "HELLO WORLD!";
+const lowerCaseStr = str.toLowerCase();
+console.log(lowerCaseStr);
+ 
+Q.2) Create an HTML form that contain the Student Registration details and write a JavaScript to 
+validate Student first and last name as it should not contain other than alphabets and age should be between 18 to 50. [15] 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+</head>
+<body>
+    <h2>Student Registration</h2>
+    <form onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br><br>
+        <input type="submit" value="Register">
+    </form>
+    <script>
+        function validateForm() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var age = document.getElementById('age').value;
+
+            var nameRegex = /^[A-Za-z]+$/;
+
+            if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+                alert('First and last name should only contain alphabets');
+                return false;
+            }
+
+            if (age < 18 || age > 50) {
+                alert('Age should be between 18 to 50');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+
+*****************************************Slip-9*********************************************
+Q.1) Create a Node.js file that writes an HTML form, with a concatenate two string. [10] 
+const fs = require('fs');
+
+const htmlForm = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concatenate Strings Form</title>
+</head>
+<body>
+    <h2>Concatenate Strings</h2>
+    <form action="/concatenate" method="post">
+        <label for="string1">String 1:</label><br>
+        <input type="text" id="string1" name="string1" required><br><br>
+        <label for="string2">String 2:</label><br>
+        <input type="text" id="string2" name="string2" required><br><br>
+        <input type="submit" value="Concatenate">
+    </form>
+</body>
+</html>
+`;
+
+fs.writeFileSync('concatenateForm.html', htmlForm);
+console.log('HTML form for concatenating strings created!');
+
+Q.2) Create an HTML form for Student Feedback Form with Name, Email ID, Mobile No., 
+feedback (Not good, good, very good, excellent) and write a JavaScript to validate all field. [15]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback Form</title>
+</head>
+<body>
+    <h2>Student Feedback Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="mobile">Mobile No.:</label><br>
+        <input type="text" id="mobile" name="mobile" maxlength="10" required><br><br>
+        <label for="feedback">Feedback:</label><br>
+        <select id="feedback" name="feedback" required>
+            <option value="">Select</option>
+            <option value="Not good">Not good</option>
+            <option value="Good">Good</option>
+            <option value="Very good">Very good</option>
+            <option value="Excellent">Excellent</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile').value;
+            var feedback = document.getElementById('feedback').value;
+
+            var nameRegex = /^[A-Za-z]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var mobileRegex = /^[0-9]{10}$/;
+
+            if (!nameRegex.test(name)) {
+                alert('Please enter a valid name');
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            if (!mobileRegex.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return false;
+            }
+
+            if (feedback === "") {
+                alert('Please provide feedback');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+***************************************Slip-10************************************
+Q.1) Create a Node.js file that will convert the output "rbnb college!" into Upper-case letters.      [10] 
+Q.2) Create an HTML form for Employee and write a JavaScript to validate name, email ID, 
+mobile number, department, joining date. [15]
